@@ -11,30 +11,37 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <img class="side-figure side-figure-left" src="krishna.png" alt="" aria-hidden="true" />
+  <img class="side-figure side-figure-right" src="arjuna.png" alt="" aria-hidden="true" />
+
   <div class="app">
-    <header class="app-header">
-      <div class="om">ॐ</div>
-      <div>
-        <h1>Gita GPT</h1>
-        <p>Ask anything. Every answer finds its way back to the Bhagavad Gita.</p>
-      </div>
-    </header>
+    <div class="app-inner">
+      <header class="app-header">
+        <div class="om">ॐ</div>
+        <div>
+          <h1>Gita GPT</h1>
+          <p>Ask anything. Every answer finds its way back to the Bhagavad Gita.</p>
+        </div>
+      </header>
+    </div>
 
     <div class="chat-wrap">
       <div id="sanskrit-bg" class="sanskrit-bg" aria-hidden="true"></div>
       <main id="chat" class="chat"></main>
     </div>
 
-    <form id="composer" class="composer">
-      <input
-        id="input"
-        type="text"
-        placeholder="Ask a question..."
-        autocomplete="off"
-        required
-      />
-      <button id="send" type="submit">Send</button>
-    </form>
+    <div class="app-inner">
+      <form id="composer" class="composer">
+        <input
+          id="input"
+          type="text"
+          placeholder="Ask a question..."
+          autocomplete="off"
+          required
+        />
+        <button id="send" type="submit">Send</button>
+      </form>
+    </div>
   </div>
 
   <script src="app.js"></script>
