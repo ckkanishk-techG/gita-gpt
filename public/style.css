@@ -42,6 +42,8 @@ body {
 
 .side-figure-left {
   left: 0;
+  bottom: 20vh;
+  bottom: 20dvh;
   height: 50vh;
   height: 50dvh;
   transform: translateX(-20%) scaleX(-1);
