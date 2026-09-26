@@ -1,9 +1,61 @@
 const chatEl = document.getElementById('chat');
+const sanskritBgEl = document.getElementById('sanskrit-bg');
 const formEl = document.getElementById('composer');
 const inputEl = document.getElementById('input');
 const sendBtn = document.getElementById('send');
 
 const history = [];
+
+const SANSKRIT_GLYPHS = [
+  'ॐ', 'अ', 'आ', 'इ', 'ई', 'उ', 'ऊ', 'ऋ', 'ए', 'ऐ', 'ओ', 'औ',
+  'क', 'ख', 'ग', 'घ', 'च', 'छ', 'ज', 'झ', 'ट', 'ठ', 'ड', 'ढ',
+  'त', 'थ', 'द', 'ध', 'न', 'प', 'फ', 'ब', 'भ', 'म',
+  'य', 'र', 'ल', 'व', 'श', 'ष', 'स', 'ह',
+  'धर्म', 'कर्म', 'योग', 'गीता', 'कृष्ण', 'शान्ति', 'मोक्ष', 'आत्मा',
+];
+
+function spawnSanskritGlyph() {
+  if (!sanskritBgEl) return;
+
+  const glyph = document.createElement('span');
+  glyph.className = 'sanskrit-glyph';
+  glyph.textContent = SANSKRIT_GLYPHS[Math.floor(Math.random() * SANSKRIT_GLYPHS.length)];
+
+  const size = 16 + Math.random() * 34; // 16px - 50px
+  const left = Math.random() * 96; // percent
+  const duration = 14 + Math.random() * 14; // 14s - 28s
+  const opacity = 0.08 + Math.random() * 0.14;
+  const rotate = (Math.random() * 40 - 20).toFixed(1);
+
+  glyph.style.left = `${left}%`;
+  glyph.style.fontSize = `${size}px`;
+  glyph.style.animationDuration = `${duration}s`;
+  glyph.style.setProperty('--glyph-opacity', opacity.toFixed(2));
+  glyph.style.setProperty('--glyph-rotate', `${rotate}deg`);
+
+  glyph.addEventListener('animationiteration', () => {
+    glyph.style.left = `${Math.random() * 96}%`;
+    glyph.textContent = SANSKRIT_GLYPHS[Math.floor(Math.random() * SANSKRIT_GLYPHS.length)];
+  });
+
+  sanskritBgEl.appendChild(glyph);
+}
+
+function initSanskritBackground() {
+  if (!sanskritBgEl) return;
+  const GLYPH_COUNT = 22;
+  for (let i = 0; i < GLYPH_COUNT; i++) {
+    spawnSanskritGlyph();
+  }
+  // Stagger start positions so they don't all begin at the bottom at once.
+  const glyphs = sanskritBgEl.querySelectorAll('.sanskrit-glyph');
+  glyphs.forEach((glyph) => {
+    const negativeDelay = -(Math.random() * parseFloat(glyph.style.animationDuration));
+    glyph.style.animationDelay = `${negativeDelay}s`;
+  });
+}
+
+initSanskritBackground();
 
 function escapeHtml(str) {
   return str

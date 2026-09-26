@@ -57,8 +57,56 @@ body {
   color: var(--text-dim);
 }
 
-.chat {
+.chat-wrap {
+  position: relative;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.sanskrit-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sanskrit-glyph {
+  position: absolute;
+  bottom: -60px;
+  color: var(--accent);
+  font-family: "Noto Sans Devanagari", "Georgia", serif;
+  opacity: 0;
+  user-select: none;
+  animation-name: sanskrit-float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes sanskrit-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--glyph-opacity, 0.14);
+  }
+  85% {
+    opacity: var(--glyph-opacity, 0.14);
+  }
+  100% {
+    transform: translateY(-720px) rotate(var(--glyph-rotate, 20deg));
+    opacity: 0;
+  }
+}
+
+.chat {
+  position: relative;
+  z-index: 1;
+  height: 100%;
   overflow-y: auto;
   padding: 20px 4px;
   display: flex;
